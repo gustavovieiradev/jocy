@@ -5,7 +5,7 @@ import { Feather } from '@expo/vector-icons';
 import group from '../../images/group.png';
 import box from '../../images/box.png';
 
-export default function Login() {
+export default function Signup() {
   return (
     <View style={styles.container}>
       <ImageBackground source={group} style={styles.image}>
@@ -14,14 +14,21 @@ export default function Login() {
         </View>
         <View style={styles.content}>
           <View style={styles.switch}>
-            <TouchableOpacity style={styles.switchActive}>
-              <Text style={styles.switchActiveText}>Login</Text>
-            </TouchableOpacity>
             <TouchableOpacity style={styles.switchInactive}>
-              <Text style={styles.switchInactiveText} >Sign Up</Text>
+              <Text style={styles.switchInactiveText}>Login</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.switchActive}>
+              <Text style={styles.switchActiveText} >Sign Up</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.form}>
+            <View style={styles.formField}>
+              <Text style={styles.label}>Full Name</Text>
+              <View style={styles.field}>
+                <Feather name="user" color="rgba(169, 169, 169, 0.8)" size={22} />
+                <TextInput style={styles.input} placeholder="Enter your full name"/>
+              </View>
+            </View>
             <View style={styles.formField}>
               <Text style={styles.label}>E-mail Address</Text>
               <View style={styles.field}>
@@ -33,14 +40,11 @@ export default function Login() {
               <Text style={styles.label}>Password</Text>
               <View style={styles.field}>
                 <Feather name="lock" color="rgba(169, 169, 169, 0.8)" size={22} />
-                <TextInput style={styles.input} placeholder="Enter your password"/>
+                <TextInput style={styles.input} placeholder="Create your password"/>
               </View>
             </View>
-            <View style={styles.forgotPassword}>
-              <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
-            </View>
             <TouchableOpacity style={styles.button}>
-              <Text style={styles.buttonText}>Login</Text>
+              <Text style={styles.buttonText}>Sign Up</Text>
             </TouchableOpacity>
           </View>
         </View>
