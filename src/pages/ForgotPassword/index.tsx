@@ -6,8 +6,11 @@ import group from '../../images/group.png';
 import box from '../../images/box.png';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
+import { useNavigation } from '@react-navigation/native';
 
 export default function ForgotPassword() {
+  const { goBack } = useNavigation();
+
   return (
     <View style={styles.container}>
       <ImageBackground source={group} style={styles.image}>
@@ -16,7 +19,9 @@ export default function ForgotPassword() {
         </View>
         <View style={styles.content}>
           <View>  
-            <Feather name="arrow-left" size={28} color="#000" />
+            <TouchableOpacity onPress={goBack}>
+              <Feather name="arrow-left" size={28} color="#000" />
+            </TouchableOpacity>
             <Text style={styles.title}>Forgot Password</Text>
             <Text style={styles.subTitle}>Enter your e-mail and we will send you 4 digits code for verification.</Text>
             <Input iconLeft="mail" label="E-Mail Address" placeholder="Enter your e-mail" />
