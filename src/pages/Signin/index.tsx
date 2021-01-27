@@ -1,8 +1,15 @@
-import React from 'react';
+import { useNavigation } from '@react-navigation/native';
+import React, { useCallback } from 'react';
 import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
 import Input from '../../components/Input';
 
 export default function Signin() {
+  const { navigate } = useNavigation();
+
+  const handleGoToForgotPassword = useCallback(() => {
+    navigate('ForgotPassword');
+  }, [])
+
   return (
     <View style={styles.form}>
       <View style={styles.formField}>
@@ -11,9 +18,9 @@ export default function Signin() {
       <View style={styles.formField}>
         <Input iconLeft="lock" colorIconLeft="rgba(169, 169, 169, 0.8)" size={22} placeholder="Enter your password" label="Password"/>
       </View>
-      <View style={styles.forgotPassword}>
+      <TouchableOpacity style={styles.forgotPassword} onPress={handleGoToForgotPassword}>
         <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
-      </View>
+      </TouchableOpacity>
       <TouchableOpacity style={styles.button}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>

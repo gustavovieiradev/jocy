@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
   },
   input: {
+    width: '100%',
     paddingHorizontal: 10,
     fontFamily: 'Nunito_400Regular',
     fontSize: 16,
