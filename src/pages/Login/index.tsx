@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Image, ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 
 import group from '../../images/group.png';
 import box from '../../images/box.png';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Login() {
+  const { navigate } = useNavigation();
+
+  const handleGoSignup = useCallback(() => {
+    navigate('Signup');
+  }, []);
+
   return (
     <View style={styles.container}>
       <ImageBackground source={group} style={styles.image}>
@@ -14,10 +21,10 @@ export default function Login() {
         </View>
         <View style={styles.content}>
           <View style={styles.switch}>
-            <TouchableOpacity style={styles.switchActive}>
+            <View style={styles.switchActive}>
               <Text style={styles.switchActiveText}>Login</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.switchInactive}>
+            </View>
+            <TouchableOpacity style={styles.switchInactive} onPress={handleGoSignup}>
               <Text style={styles.switchInactiveText} >Sign Up</Text>
             </TouchableOpacity>
           </View>
