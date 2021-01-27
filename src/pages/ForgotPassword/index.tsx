@@ -5,6 +5,7 @@ import { Feather } from '@expo/vector-icons';
 import group from '../../images/group.png';
 import box from '../../images/box.png';
 import Input from '../../components/Input';
+import Button from '../../components/Button';
 
 export default function ForgotPassword() {
   return (
@@ -21,9 +22,7 @@ export default function ForgotPassword() {
             <Input iconLeft="mail" label="E-Mail Address" placeholder="Enter your e-mail" />
           </View>
           <View>  
-            <TouchableOpacity style={styles.button}>
-              <Text style={styles.buttonText}>Login</Text>
-            </TouchableOpacity>
+            <Button textButton="Continue" disabled />
             <View style={styles.help}>
               <Text style={styles.helpText}>Can’t use e-mail?</Text>
               <TouchableOpacity>
