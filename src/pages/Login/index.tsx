@@ -1,16 +1,16 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Image, ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { Feather } from '@expo/vector-icons';
 
 import group from '../../images/group.png';
 import box from '../../images/box.png';
-import { useNavigation } from '@react-navigation/native';
+import Signin from '../Signin';
+import Signup from '../Signup';
 
 export default function Login() {
-  const { navigate } = useNavigation();
+  const [currentSegment, setCurrentSegment] = useState<string>('signin');
 
-  const handleGoSignup = useCallback(() => {
-    navigate('Signup');
+  const handleSetCurrentSegment = useCallback((segment: string) => {
+    setCurrentSegment(segment);
   }, []);
 
   return (
@@ -21,35 +21,15 @@ export default function Login() {
         </View>
         <View style={styles.content}>
           <View style={styles.switch}>
-            <View style={styles.switchActive}>
-              <Text style={styles.switchActiveText}>Login</Text>
-            </View>
-            <TouchableOpacity style={styles.switchInactive} onPress={handleGoSignup}>
-              <Text style={styles.switchInactiveText} >Sign Up</Text>
+            <TouchableOpacity style={currentSegment === 'signin' ? styles.switchActive : styles.switchInactive} onPress={() => handleSetCurrentSegment('signin')}>
+              <Text style={currentSegment === 'signin' ? styles.switchActiveText : styles.switchInactiveText}>Login</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={currentSegment === 'signup' ? styles.switchActive : styles.switchInactive} onPress={() => handleSetCurrentSegment('signup')}>
+              <Text style={currentSegment === 'signup' ? styles.switchActiveText : styles.switchInactiveText} >Sign Up</Text>
             </TouchableOpacity>
           </View>
-          <View style={styles.form}>
-            <View style={styles.formField}>
-              <Text style={styles.label}>E-mail Address</Text>
-              <View style={styles.field}>
-                <Feather name="mail" color="rgba(169, 169, 169, 0.8)" size={22} />
-                <TextInput style={styles.input} placeholder="Enter your e-mail"/>
-              </View>
-            </View>
-            <View style={styles.formField}>
-              <Text style={styles.label}>Password</Text>
-              <View style={styles.field}>
-                <Feather name="lock" color="rgba(169, 169, 169, 0.8)" size={22} />
-                <TextInput style={styles.input} placeholder="Enter your password"/>
-              </View>
-            </View>
-            <View style={styles.forgotPassword}>
-              <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
-            </View>
-            <TouchableOpacity style={styles.button}>
-              <Text style={styles.buttonText}>Login</Text>
-            </TouchableOpacity>
-          </View>
+          {currentSegment === 'signin' && <Signin />}
+          {currentSegment === 'signup' && <Signup />}
         </View>
       </ImageBackground>
     </View>
