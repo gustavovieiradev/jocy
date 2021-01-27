@@ -1,23 +1,15 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
-import { Feather } from '@expo/vector-icons';
+import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
+import Input from '../../components/Input';
 
 export default function Signin() {
   return (
     <View style={styles.form}>
       <View style={styles.formField}>
-        <Text style={styles.label}>E-mail Address</Text>
-        <View style={styles.field}>
-          <Feather name="mail" color="rgba(169, 169, 169, 0.8)" size={22} />
-          <TextInput style={styles.input} placeholder="Enter your e-mail"/>
-        </View>
+        <Input iconLeft="mail" colorIconLeft="rgba(169, 169, 169, 0.8)" size={22} placeholder="Enter your e-mail" label="E-mail Address"/>
       </View>
       <View style={styles.formField}>
-        <Text style={styles.label}>Password</Text>
-        <View style={styles.field}>
-          <Feather name="lock" color="rgba(169, 169, 169, 0.8)" size={22} />
-          <TextInput style={styles.input} placeholder="Enter your password"/>
-        </View>
+        <Input iconLeft="lock" colorIconLeft="rgba(169, 169, 169, 0.8)" size={22} placeholder="Enter your password" label="Password"/>
       </View>
       <View style={styles.forgotPassword}>
         <Text style={styles.forgotPasswordText}>Forgot Password?</Text>

@@ -1,40 +1,19 @@
 import React, { useCallback } from 'react';
-import { Image, ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { Feather } from '@expo/vector-icons';
-
-import group from '../../images/group.png';
-import box from '../../images/box.png';
-import { useNavigation } from '@react-navigation/native';
+import Input from '../../components/Input';
 
 export default function Signup() {
-  const { navigate } = useNavigation();
-  
-  const handleGoLogin = useCallback(() => {
-    navigate('Login');
-  }, []);
-
   return (
     <View style={styles.form}>
       <View style={styles.formField}>
-        <Text style={styles.label}>Full Name</Text>
-        <View style={styles.field}>
-          <Feather name="user" color="rgba(169, 169, 169, 0.8)" size={22} />
-          <TextInput style={styles.input} placeholder="Enter your full name"/>
-        </View>
+        <Input iconLeft="user" colorIconLeft="rgba(169, 169, 169, 0.8)" size={22} placeholder="Enter your full name" label="Full Name"/>
       </View>
       <View style={styles.formField}>
-        <Text style={styles.label}>E-mail Address</Text>
-        <View style={styles.field}>
-          <Feather name="mail" color="rgba(169, 169, 169, 0.8)" size={22} />
-          <TextInput style={styles.input} placeholder="Enter your e-mail"/>
-        </View>
+        <Input iconLeft="mail" colorIconLeft="rgba(169, 169, 169, 0.8)" size={22} placeholder="Enter your e-mail" label="E-mail Address"/>
       </View>
       <View style={styles.formField}>
-        <Text style={styles.label}>Password</Text>
-        <View style={styles.field}>
-          <Feather name="lock" color="rgba(169, 169, 169, 0.8)" size={22} />
-          <TextInput style={styles.input} placeholder="Create your password"/>
-        </View>
+        <Input iconLeft="lock" colorIconLeft="rgba(169, 169, 169, 0.8)" size={22} placeholder="Create your password" label="Password"/>
       </View>
       <TouchableOpacity style={styles.button}>
         <Text style={styles.buttonText}>Sign Up</Text>
