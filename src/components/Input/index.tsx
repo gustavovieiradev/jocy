@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { StyleSheet, Text, View, TextInput } from 'react-native';
 import { Feather } from '@expo/vector-icons';
+
+import { Container, Label, Field, InputText } from './styles';
 
 interface IProps<GLYPHS extends string> {
   iconLeft?: GLYPHS;
@@ -12,15 +14,42 @@ interface IProps<GLYPHS extends string> {
   size?: number;
 }
 
+interface InputValueReference {
+  value: string;
+}
+
 export default function Input({iconLeft, iconRight, placeholder = "", label = "", size = 22}: IProps<any>) {
+  const inputElementRef = useRef<any>(null);
+  const inputValueRef = useRef<InputValueReference>({ value: '' });
+  const [isFocused, setIsFocused] = useState(false);
+  const [isFilled, setIsFilled] = useState(false);
+
+  const handleInputBlur = useCallback(() => {
+    setIsFocused(false);
+    setIsFilled(!!inputValueRef.current.value);
+  }, []);
+
+  const handleInputFocus = useCallback(() => {
+    setIsFocused(true);
+  }, []);
+
   return (
-    <View style={styles.formField}>
-      <Text style={styles.label}>{label}</Text>
-      <View style={styles.field}>
-        {iconLeft && <Feather name={iconLeft} color="rgba(169, 169, 169, 0.8)" size={size} />}
-        <TextInput style={styles.input} placeholder={placeholder}/>
-      </View>
-    </View>
+    <Container>
+      <Label>{label}</Label>
+      <Field isFocused={isFocused || isFilled}>
+        {iconLeft && <Feather name={iconLeft} color={isFocused || isFilled ? '#17BDC8' : 'rgba(169, 169, 169, 0.8)'} size={size} />}
+        <InputText 
+          ref={inputElementRef}
+          style={styles.input} 
+          placeholder={placeholder}
+          onFocus={handleInputFocus}
+          onBlur={handleInputBlur}
+          onChangeText={(value) => {
+            inputValueRef.current.value = value;
+          }}
+        />
+      </Field>
+    </Container>
   )
 }
 
