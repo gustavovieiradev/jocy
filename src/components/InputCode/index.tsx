@@ -1,31 +1,37 @@
-import React, { useCallback, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 
-import { Container, Code, Input } from './styles';
+import { Code, Input } from './style';
 
-interface IProps {
-  qtd: number;
+interface InputValueReference {
+  value: string;
 }
 
-export default function InputCode({ qtd }: IProps) {
+export default function InputCode() {
 
-  const renderCodes = useMemo(() => {
-    const codes = [];
+  const inputElementRef = useRef<any>(null);
+  const inputValueRef = useRef<InputValueReference>({ value: '' });
+  const [isFocused, setIsFocused] = useState(false);
+  const [isFilled, setIsFilled] = useState(false);
 
-    for (let i = 0; i < qtd; i++) {
-      codes.push(
-        <Code>
-          <Input />
-        </Code>
-      );
-    }
+  const handleInputBlur = useCallback(() => {
+    setIsFocused(false);
+    setIsFilled(!!inputValueRef.current.value);
+  }, []);
 
-    return codes;
-
+  const handleInputFocus = useCallback(() => {
+    setIsFocused(true);
   }, []);
 
   return (
-    <Container>
-      {renderCodes}
-    </Container>
+    <Code isFocused={isFocused || isFilled}>
+      <Input 
+        ref={inputElementRef}
+        onFocus={handleInputFocus}
+        onBlur={handleInputBlur}
+        onChangeText={(value) => {
+          inputValueRef.current.value = value;
+        }}
+      />
+    </Code>
   )
-};
+}

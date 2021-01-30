@@ -1,11 +1,11 @@
 import React from 'react';
 import { Image } from 'react-native';
 
-import { Background, Container, Logo, Content, Title, Description, Codes, Code } from './styles';
+import { Background, Container, Logo, Content, Title, Description } from './styles';
 
 import group from '../../images/group.png';
 import box from '../../images/box.png';
-import InputCode from '../../components/InputCode';
+import Codes from '../../components/Codes';
 
 export default function VerificationCode() {
   return (
@@ -17,7 +17,7 @@ export default function VerificationCode() {
         <Content>
           <Title>Verification</Title>
           <Description>Enter your verification code that we sent you through your e-mail or phone number.</Description>
-          <InputCode qtd={4} />
+          <Codes qtd={4} />
         </Content>
       </Background>
     </Container>      
